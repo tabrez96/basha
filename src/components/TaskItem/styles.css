@@ -1,0 +1,8 @@
+.taskContainer {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #dfdfdf;
+  margin: 10px;
+  background: orange;
+  cursor: pointer;
+}
