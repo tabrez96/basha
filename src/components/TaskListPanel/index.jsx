@@ -7,9 +7,10 @@ const TaskListPanel = (props) => {
     backgroundColor: 'red'
   }
 
+  console.log('in panel', props)
   return (
     <div className="panelContainer" style={style}>
-      { props.user.name }
+      { props.user.userName }
     </div>
   )
 }

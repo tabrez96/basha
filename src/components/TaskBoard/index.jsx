@@ -18,12 +18,9 @@ class TaskBoard extends Component {
 
   render() {
 
-    console.log(this.props, 'props in board')
+    const { addTask, moveTask, deleteTask, users } = this.props;
 
-    const users = [
-      {name: 'tabrez', id: 1, tasks: [{ id: 1, value: 'Task 1'}, {id: 2, value: 'Task 2'}]},
-      {name: 'keerthana', id: 2, tasks: [{id: 3, value: 'Task 3'}, {id: 4, value: 'Task 4'}]}
-    ];
+    console.log(this.props, 'board props')
 
     return (
       <DragDropContext
@@ -34,7 +31,13 @@ class TaskBoard extends Component {
           {
             _.map(users, user => {
               return (
-                <TaskList user={user} key={user.id}/>
+                <TaskList
+                  key={user.id}
+                  user={user}
+                  onAddTask={addTask}
+                  onDeleteTask={deleteTask}
+                  onMoveTask={moveTask}
+                />
               )
             })
           }

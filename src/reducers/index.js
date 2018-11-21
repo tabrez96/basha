@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import tasksReducer from './tasks';
-
-console.log(tasksReducer, 'task reducer');
+import userData from './reducers';
 
 export default combineReducers({
-  tasksReducer
+  userData
 });

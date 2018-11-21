@@ -12,7 +12,7 @@ const TaskItem = ({ task }) => {
         provided => (
           <div className="taskContainer" ref={provided.innerRef} {...provided.draggableProps}>
             <div {...provided.dragHandleProps}> Handle </div>
-            {task.value}
+            {task.taskData}
           </div>
         )
       }
