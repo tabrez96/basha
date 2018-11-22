@@ -11,8 +11,6 @@ import './styles.css';
 
 const TaskList = (props) => {
 
-  console.log(props, 'props in list');
-
   const onAddTask = (taskData) => {
     taskData.userId = props.user.userId;
     props.onAddTask(taskData);
@@ -21,14 +19,14 @@ const TaskList = (props) => {
   return (
     <div className="taskListContainer">
       <Panel user={props.user} />
-      <Droppable droppableId={props.user.userId}>
+      <Droppable droppableId={props.user.userId + ''}>
       {
         provided => (
           <div className="listWrapper" ref={provided.innerRef} {...provided.droppableProps}>
           {
             _.map(props.user.tasks, (task, _index) => {
               return (
-                <TaskItem task={task} key={task.id} index={_index} />
+                <TaskItem task={task} key={task.taskId} index={_index} />
               )
             })
           }

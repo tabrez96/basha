@@ -7,11 +7,10 @@ import './styles.css';
 const TaskItem = ({ task, index }) => {
 
   return (
-    <Draggable key={task.id} draggableId={task.id} index={index}>
+    <Draggable key={task.taskId} draggableId={task.taskId} index={index}>
       {
         provided => (
-          <div className="taskContainer" ref={provided.innerRef} {...provided.draggableProps}>
-            <div {...provided.dragHandleProps}> Handle </div>
+          <div className="taskContainer" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
             {task.taskData}
           </div>
         )

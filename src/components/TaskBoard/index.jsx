@@ -22,7 +22,6 @@ class TaskBoard extends Component {
   }
 
   onDragEnd = ({ draggableId, source, destination }) => {
-    console.log('drag start', draggableId, source, destination);
     const payload = {
       taskId: draggableId,
       sourceUserId: source.droppableId,
@@ -30,7 +29,6 @@ class TaskBoard extends Component {
       destinationUserId: destination.droppableId,
       destinationIndex: destination.index
     }
-    // console.log(payload, 'am i on the right path?')
     this.props.moveTask(payload);
   }
 
@@ -96,7 +94,7 @@ class TaskBoard extends Component {
             _.map(users, user => {
               return (
                 <TaskList
-                  key={user.id}
+                  key={user.userId}
                   user={user}
                   onAddTask={addTask}
                   onDeleteTask={deleteTask}

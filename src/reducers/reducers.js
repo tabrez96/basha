@@ -15,17 +15,16 @@ const userData = (state = [{ userName: 'tabrez', userId: 1, tasks: [] }], action
       const user = state.find(user => user.userId === action.userId);
       user.tasks.push(
         {
-          id: action.id,
+          taskId: action.taskId,
           taskData: action.task
         }
       );
       return [...state];
     case 'DELETE_TASK':
-      return state.filter(task => task.id !== action.id);
+      return state.filter(task => action.taskId !== action.taskId);
     case 'MOVE_TASK':
-      console.log(action, 'in reducer')
-      const moved_from_user = state.find(user => user.userId === action.task.sourceUserId);
-      const moved_to_user = state.find(user => user.userId === action.task.destinationUserId);
+      const moved_from_user = state.find(user => user.userId == action.task.sourceUserId);
+      const moved_to_user = state.find(user => user.userId == action.task.destinationUserId);
       const moved_task = moved_from_user.tasks.splice(action.task.sourceIndex, 1);
       moved_to_user.tasks.splice(action.task.destinationIndex, 0, moved_task[0]);
       return [...state];
