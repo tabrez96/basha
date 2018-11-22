@@ -8,5 +8,5 @@ export const addUser = userData => ({
 
 export const deleteUser = user => ({
   type: 'DELETE_USER',
-  user
+  userId: user.userId
 })

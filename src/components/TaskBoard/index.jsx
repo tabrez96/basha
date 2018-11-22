@@ -75,7 +75,7 @@ class TaskBoard extends Component {
   render() {
 
     const { showTextBox, userName } = this.state;
-    const { addTask, deleteTask, users } = this.props;
+    const { addTask, deleteTask, users, deleteUser } = this.props;
 
     var content;
     if (showTextBox) {
@@ -112,6 +112,7 @@ class TaskBoard extends Component {
                   user={user}
                   onAddTask={addTask}
                   onDeleteTask={deleteTask}
+                  onDeleteUser={deleteUser}
                 />
               )
             })

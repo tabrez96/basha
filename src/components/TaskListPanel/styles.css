@@ -1,3 +1,12 @@
 .panelContainer {
   text-align: center;
+  padding: 15px;
+}
+
+.panelContainer span:last-child {
+  float: right;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
 }

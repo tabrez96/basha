@@ -7,10 +7,10 @@ export const addTask = taskData => ({
   userId: taskData.userId
 })
 
-export const deleteTask = task => {
+export const deleteTask = task => ({
   type: 'DELETE_TASK',
   task
-}
+})
 
 export const moveTask = task => ({
   type: 'MOVE_TASK',

@@ -21,7 +21,11 @@ const userData = (state = [{ userName: 'tabrez', userId: 1, tasks: [] }], action
       );
       return [...state];
     case 'DELETE_TASK':
-      return state.filter(task => action.taskId !== action.taskId);
+      var user = state.find(user => user.userId == action.task.userId);
+      user.tasks = user.tasks.filter(task => {
+        return task.taskId !== action.task.taskId;
+      })
+      return [...state];
     case 'MOVE_TASK':
       const moved_from_user = state.find(user => user.userId == action.task.sourceUserId);
       const moved_to_user = state.find(user => user.userId == action.task.destinationUserId);

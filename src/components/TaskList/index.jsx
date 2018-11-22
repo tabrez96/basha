@@ -18,7 +18,7 @@ const TaskList = (props) => {
 
   return (
     <div className="taskListContainer">
-      <Panel user={props.user} />
+      <Panel user={props.user} onDeleteUser={props.onDeleteUser}/>
       <Droppable droppableId={props.user.userId + ''}>
       {
         provided => (
@@ -26,7 +26,9 @@ const TaskList = (props) => {
           {
             _.map(props.user.tasks, (task, _index) => {
               return (
-                <TaskItem task={task} key={task.taskId} index={_index} />
+                <TaskItem key={task.taskId}
+                task={task} index={_index} user={props.user}
+                onDeleteTask={props.onDeleteTask}/>
               )
             })
           }
