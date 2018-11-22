@@ -12,7 +12,7 @@ export const deleteTask = task => {
   task
 }
 
-export const moveTask = task => {
+export const moveTask = task => ({
   type: 'MOVE_TASK',
   task
-}
+})

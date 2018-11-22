@@ -4,9 +4,9 @@ const userData = (state = [{ userName: 'tabrez', userId: 1, tasks: [] }], action
       return [
         ...state,
         {
-
           userName: action.userName,
-          userId: action.userId
+          userId: action.userId,
+          tasks: []
         }
       ]
     case 'DELETE_USER':
@@ -20,12 +20,15 @@ const userData = (state = [{ userName: 'tabrez', userId: 1, tasks: [] }], action
         }
       );
       return [...state];
-    // case 'DELETE_TASK':
-    //   return state.filter(task => task.id !== action.id);
-    // case 'MOVE_TASK':
-    //   const moved_task = state.find(task => task.id === action.id);
-    //   moved_task.userId = action.userId
-    //   return state;
+    case 'DELETE_TASK':
+      return state.filter(task => task.id !== action.id);
+    case 'MOVE_TASK':
+      console.log(action, 'in reducer')
+      const moved_from_user = state.find(user => user.userId === action.task.sourceUserId);
+      const moved_to_user = state.find(user => user.userId === action.task.destinationUserId);
+      const moved_task = moved_from_user.tasks.splice(action.task.sourceIndex, 1);
+      moved_to_user.tasks.splice(action.task.destinationIndex, 0, moved_task[0]);
+      return [...state];
     default:
       return state;
   }

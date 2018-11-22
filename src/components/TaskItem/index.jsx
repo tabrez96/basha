@@ -4,10 +4,10 @@ import { Draggable } from 'react-beautiful-dnd';
 
 import './styles.css';
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, index }) => {
 
   return (
-    <Draggable key={task.id} draggableId={task.id}>
+    <Draggable key={task.id} draggableId={task.id} index={index}>
       {
         provided => (
           <div className="taskContainer" ref={provided.innerRef} {...provided.draggableProps}>

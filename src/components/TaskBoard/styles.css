@@ -1,3 +1,21 @@
 .boardContainer {
   display: flex;
 }
+
+.addBtn {
+  margin: 10px;
+  height: max-content;
+  background: yellowgreen;
+  padding: 10px;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.addUserForm {
+  margin: 10px;
+}
+
+.addUserForm button {
+  margin: 10px 10px 10px 0px;
+}

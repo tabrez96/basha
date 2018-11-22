@@ -4,3 +4,12 @@
   padding: 10px;
   cursor: pointer;
 }
+
+.addTaskWrapper input {
+  margin: 5px;
+}
+
+.addTaskWrapper button {
+  margin: 5px;
+  cursor: pointer;
+}

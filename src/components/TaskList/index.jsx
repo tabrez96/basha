@@ -21,14 +21,14 @@ const TaskList = (props) => {
   return (
     <div className="taskListContainer">
       <Panel user={props.user} />
-      <Droppable droppableId={props.user.id}>
+      <Droppable droppableId={props.user.userId}>
       {
         provided => (
           <div className="listWrapper" ref={provided.innerRef} {...provided.droppableProps}>
           {
-            _.map(props.user.tasks, task => {
+            _.map(props.user.tasks, (task, _index) => {
               return (
-                <TaskItem task={task} key={task.id} />
+                <TaskItem task={task} key={task.id} index={_index} />
               )
             })
           }
