@@ -6,6 +6,7 @@ const userData = (state = [{ userName: 'tabrez', userId: 1, tasks: [] }], action
         {
           userName: action.userName,
           userId: action.userId,
+          userColor: action.userColor,
           tasks: []
         }
       ]

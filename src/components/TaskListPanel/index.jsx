@@ -5,7 +5,7 @@ import './styles.css';
 
 const TaskListPanel = (props) => {
   const style = {
-    backgroundColor: 'red'
+    backgroundColor: props.user.userColor || '#f58020'
   }
 
   const onDeleteUser = () => {

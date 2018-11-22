@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskList from "../TaskList/index";
 import * as _ from 'lodash';
+import * as gen from 'color-generator';
 
 import './styles.css';
 
-class TaskBoard extends Component {
+class TaskBoard extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -41,11 +42,14 @@ class TaskBoard extends Component {
       this.setState({
         error: true
       });
+      // prevent reloading of the page
       event.preventDefault();
       return;
     }
     this.props.addUser({
-      userName: this.state.userName
+      userName: this.state.userName,
+      // generate random color to users
+      userColor: gen().hexString()
     });
     this.resetText();
     this.toggleShowTextbox();

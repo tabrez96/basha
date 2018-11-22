@@ -17,6 +17,7 @@ class AddTask extends React.PureComponent {
       this.setState({
         error: true
       });
+      // to prevent reloading of page
       event.preventDefault();
       return;
     }
