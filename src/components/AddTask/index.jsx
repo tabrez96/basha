@@ -12,7 +12,14 @@ class AddTask extends React.PureComponent {
     };
   }
 
-  addTask = () => {
+  addTask = (event) => {
+    if (!this.state.newTask) {
+      this.setState({
+        error: true
+      });
+      event.preventDefault();
+      return;
+    }
     this.props.onAddTask({
       task: this.state.newTask,
     });
@@ -22,7 +29,8 @@ class AddTask extends React.PureComponent {
 
   resetText = () => {
     this.setState({
-      newTask: ''
+      newTask: '',
+      error: false
     })
   }
 
@@ -35,8 +43,9 @@ class AddTask extends React.PureComponent {
 
   handleChange = (event) => {
     this.setState({
-      newTask: event.target.value
-    })
+      newTask: event.target.value,
+      error: false
+    });
   }
 
   render() {
@@ -47,9 +56,10 @@ class AddTask extends React.PureComponent {
       content = (
         <form onSubmit={this.addTask}>
           <input type="text" value={newTask} onChange={this.handleChange} />
+          <div className="formError">{this.state.error ? 'Task contents cannot be empty' : null}</div>
           <button type="submit">Add</button>
           <button onClick={this.toggleShowTextbox}>Cancel</button>
-          (But this is a bad UX)
+          <div>(But this is a bad UX)</div>
         </form>
       )
     }

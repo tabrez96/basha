@@ -36,7 +36,14 @@ class TaskBoard extends Component {
     this.props.moveTask(payload);
   }
 
-  addUser = () => {
+  addUser = (event) => {
+    if (!this.state.userName) {
+      this.setState({
+        error: true
+      });
+      event.preventDefault();
+      return;
+    }
     this.props.addUser({
       userName: this.state.userName
     });
@@ -46,7 +53,8 @@ class TaskBoard extends Component {
 
   handleChange = (event) => {
     this.setState({
-      userName: event.target.value
+      userName: event.target.value,
+      error: false
     })
   }
 
@@ -59,7 +67,8 @@ class TaskBoard extends Component {
 
   resetText = () => {
     this.setState({
-      userName: ''
+      userName: '',
+      error: false
     })
   }
 
@@ -73,6 +82,7 @@ class TaskBoard extends Component {
       content = (
         <form className="addUserForm" onSubmit={this.addUser}>
           <input type="text" value={userName} onChange={this.handleChange} />
+          <div className="formError">{this.state.error ? 'User Name cannot be empty' : null}</div>
           <div>
             <button type="submit">Add</button>
             <button onClick={this.toggleShowTextbox}>Cancel</button>
