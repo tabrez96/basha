@@ -22,6 +22,10 @@ class TaskBoard extends Component {
   }
 
   onDragEnd = ({ draggableId, source, destination }) => {
+
+    // if card is dropped out of droppable zone
+    if (!destination) return;
+
     const payload = {
       taskId: draggableId,
       sourceUserId: source.droppableId,
