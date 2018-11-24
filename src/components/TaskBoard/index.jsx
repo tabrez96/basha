@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { DragDropContext } from "react-beautiful-dnd";
 import TaskList from "../TaskList/index";
 import * as _ from 'lodash';
 import * as gen from 'color-generator';
@@ -17,24 +16,6 @@ class TaskBoard extends React.PureComponent {
     }
 
     this.addUser = this.addUser.bind(this)
-  }
-
-  onDragStart = (result) => {
-  }
-
-  onDragEnd = ({ draggableId, source, destination }) => {
-
-    // if card is dropped out of droppable zone
-    if (!destination) return;
-
-    const payload = {
-      taskId: draggableId,
-      sourceUserId: source.droppableId,
-      sourceIndex: source.index,
-      destinationUserId: destination.droppableId,
-      destinationIndex: destination.index
-    }
-    this.props.moveTask(payload);
   }
 
   addUser = (event) => {
@@ -79,7 +60,7 @@ class TaskBoard extends React.PureComponent {
   render() {
 
     const { showTextBox, userName } = this.state;
-    const { addTask, deleteTask, users, deleteUser } = this.props;
+    const { addTask, deleteTask, users, deleteUser, moveTask } = this.props;
 
     var content;
     if (showTextBox) {
@@ -104,24 +85,20 @@ class TaskBoard extends React.PureComponent {
 
     return (
       <div className="boardContainer">
-        <DragDropContext
-          onDragStart={this.onDragStart}
-          onDragEnd={this.onDragEnd}
-        >
-          {
-            _.map(users, user => {
-              return (
-                <TaskList
-                  key={user.userId}
-                  user={user}
-                  onAddTask={addTask}
-                  onDeleteTask={deleteTask}
-                  onDeleteUser={deleteUser}
-                />
-              )
-            })
-          }
-        </DragDropContext>
+        {
+          _.map(users, user => {
+            return (
+              <TaskList
+                key={user.userId}
+                user={user}
+                onAddTask={addTask}
+                onDeleteTask={deleteTask}
+                onDeleteUser={deleteUser}
+                onMoveTask={moveTask}
+              />
+            )
+          })
+        }
         {
           content
         }

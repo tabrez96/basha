@@ -3,7 +3,6 @@ import React from "react";
 import Panel from '../TaskListPanel/index';
 import TaskItem from '../TaskItem/index';
 import AddTask from "../AddTask";
-import { Droppable } from "react-beautiful-dnd";
 
 import * as _ from 'lodash';
 
@@ -16,27 +15,35 @@ const TaskList = (props) => {
     props.onAddTask(taskData);
   }
 
+  const onDrop = (event) => {
+    const payload = {
+      sourceIndex: event.dataTransfer.getData('taskIndex'),
+      sourceUserId: event.dataTransfer.getData('userId'),
+      destinationUserId: props.user.userId
+    }
+    props.onMoveTask(payload);
+    console.log('on drop', payload)
+  }
+
+  const onDragOver = (event) => {
+    event.preventDefault();
+  }
+
   return (
     <div className="taskListContainer">
-      <Panel user={props.user} onDeleteUser={props.onDeleteUser}/>
-      <Droppable droppableId={props.user.userId + ''}>
-      {
-        provided => (
-          <div className="listWrapper" ref={provided.innerRef} {...provided.droppableProps}>
-          {
-            _.map(props.user.tasks, (task, _index) => {
-              return (
-                <TaskItem key={task.taskId}
+      <Panel user={props.user} onDeleteUser={props.onDeleteUser} />
+      <div className="listWrapper" onDrop={onDrop} onDragOver={onDragOver}>
+        {
+          _.map(props.user.tasks, (task, _index) => {
+            return (
+              <TaskItem key={task.taskId}
                 task={task} index={_index} user={props.user}
-                onDeleteTask={props.onDeleteTask}/>
-              )
-            })
-          }
-          <AddTask onAddTask={onAddTask}/>
-        </div>
-        )
-      }
-      </Droppable>
+                onDeleteTask={props.onDeleteTask} />
+            )
+          })
+        }
+        <AddTask onAddTask={onAddTask} />
+      </div>
     </div>
   )
 }
